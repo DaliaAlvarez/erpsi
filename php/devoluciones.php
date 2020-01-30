@@ -18,6 +18,12 @@ class Devoluciones Conexion{
 		return $this->obetenerSentencia();
 	}
 
+	public function modificar($IDdevoluciones,$fecha,$cantidad, $descripción, $IDproducto){
+		this->sentencia="UPDATE FROM devoluciones SET IDdevoluciones='$IDdevoluciones', fecha='$fecha', cantidad='$cantidad', descripcion='$descripcion', IDproducto='$IDproducto' WHERE IDdevoluciones='id'";
+		this->ejecutarSentencia();
+
+	}
+
 }
 
  ?>

@@ -18,6 +18,12 @@ class Empleado Conexion{
 		return $this->obetenerSentencia();
 	}
 
+	public function modificar($IDempleado,$nombre,$appaterno, $apmaterno, $correo, $rfc, $telefono, $sexo, $fechadeingreso, $cargo, $salario, $estadocivil, $nss){
+		this->sentencia="UPDATE FROM empleado SET IDempleado='$IDempleado' nombre='$nombre', appaterno='$appaterno', apmaterno='$apmaterno', correo='$correo', rfc='$rfc', telefono='$telefono', sexo='$sexo', fechadeingreso='$fechadeingreso', cargo='$cargo', salario='$salario', estadocivil='$estadocivil', nss='$nss' WHERE IDempleado='id'";
+		this->ejecutarSentencia();
+
+	}
+
 }
 
  ?>

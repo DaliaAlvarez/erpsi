@@ -18,6 +18,12 @@ class Actividad Conexion{
 		return $this->obetenerSentencia();
 	}
 
+	public function modificar($IDactividad,$registro,$IDusuario, $movimiento_act, $movimiento_tabla){
+		this->sentencia="UPDATE FROM usuario SET $IDactividad='$IDactividad, 'registo='$registro', IDusuario='$IDusuario', movimiento_act='$movimiento_act', movimiento_tabla='$movimiento_tabla' WHERE IDactividad='id'";
+		this->ejecutarSentencia();
+
+	}
+
 }
 
  ?>

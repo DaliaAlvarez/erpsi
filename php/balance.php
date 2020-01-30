@@ -1,21 +1,27 @@
 <?php 
 
 require_once("conexion.php");
-class Asistencia Conexion{
+class Balance Conexion{
 
-	public function alta($IDasistencia,$Fecha,$IDempleado, $Hora){
-		$this->sentencia ="INSERT INTO actividad VALUES (null,'$IDasistencia','$Fecha','$IDempleado','$Hora')";
-		$thihs->ejecutarSentencia();
+	public function alta($IDbalance,$fechainicio,$fechafin, $total){
+		$this->sentencia ="INSERT INTO balance VALUES (null,'$IDbalance','$fechainicio','$fechafin','$total')";
+		$this->ejecutarSentencia();
 	}
 
 	public function eliminar($id){
-		$this->sentencia = "DELETE FROM asistencia WHERE IDasistencia=$id";
+		$this->sentencia = "DELETE FROM balance WHERE IDbalance=$id";
 		$this->ejecutarSentencia();
 	}
 
 	public function consulta(){
-		$this->sentencia = "SELECT * FROM asistencia";
+		$this->sentencia = "SELECT * FROM balance";
 		return $this->obetenerSentencia();
+	}
+
+	public function modificar($IDbalance,$fechainicio,$fechafin, $total){
+		this->sentencia="UPDATE FROM balance SET IDbalance='IDbalance', fechainicio='$fechainicio', fechafin='$fechafin', total='$total' WHERE IDbalance='id'";
+		this->ejecutarSentencia();
+
 	}
 
 }

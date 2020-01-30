@@ -18,6 +18,12 @@ class Asistencia Conexion{
 		return $this->obetenerSentencia();
 	}
 
+	public function modificar($IDasistencia,$fecha,$IDempleado, $hora){
+		this->sentencia="UPDATE FROM asistencia SET IDasistencia='$IDasistencia', fecha='$fecha', empleado='$empleado', hora='$hora' WHERE IDasistencia='id'";
+		this->ejecutarSentencia();
+
+	}
+
 }
 
  ?>

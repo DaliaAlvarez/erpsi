@@ -18,6 +18,12 @@ class Detalle_compra Conexion{
 		return $this->obetenerSentencia();
 	}
 
+	public function modificar($IDdetalle_compra,$IDmateriaprima,$IDcompra, $cantidad){
+		this->sentencia="UPDATE FROM detalle_compra SET IDdetalle_compra='IDdetalle_compra', IDmateriaprima='$IDmateriaprima', IDcompra='$IDcompra', cantidad='$cantidad' WHERE IDdetalle_compra='id'";
+		this->ejecutarSentencia();
+
+	}
+
 }
 
  ?>

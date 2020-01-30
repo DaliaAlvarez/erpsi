@@ -18,6 +18,12 @@ class Cliente Conexion{
 		return $this->obetenerSentencia();
 	}
 
+	public function modificar($IDcliente,$nombre, $direccion, $telefono, $correo, $apematerno, $apepaterno, $sexo, $fenacimiento){
+		this->sentencia="UPDATE FROM cliente SET IDcliente='$IDcliente', nombre='$nombre', direccion='$direccion', telefono='$telefono' WHERE IDcliente='id'";
+		this->ejecutarSentencia();
+
+	}
+
 }
 
  ?>

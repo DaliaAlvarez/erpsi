@@ -18,6 +18,12 @@ class Compra Conexion{
 		return $this->obetenerSentencia();
 	}
 
+	public function modificar($IDcompra,$fecha, $total, $tipo_pago, $id_cliente){
+		this->sentencia="UPDATE FROM compra SET IDcompra='IDcompra', fecha='$fecha', total='$total', tipo_pago='$tipo_pago', id_cliente='$id_cliente' WHERE IDcompra='id'";
+		this->ejecutarSentencia();
+
+	}
+
 }
 
  ?>
