@@ -1,7 +1,7 @@
 <?php 
 
 require_once("conexion.php");
-class Asistencia Conexion{
+class Asistencia extends Conexion{
 
 	public function alta($IDasistencia,$fecha,$IDempleado, $hora){
 		$this->sentencia ="INSERT INTO actividad VALUES (null,'$IDasistencia','$fecha','$IDempleado','$hora')";
@@ -15,12 +15,12 @@ class Asistencia Conexion{
 
 	public function consulta(){
 		$this->sentencia = "SELECT * FROM asistencia";
-		return $this->obetenerSentencia();
+		return $this->obtenerSentencia();
 	}
 
 	public function modificar($IDasistencia,$fecha,$IDempleado, $hora){
-		this->sentencia="UPDATE FROM asistencia SET IDasistencia='$IDasistencia', fecha='$fecha', empleado='$empleado', hora='$hora' WHERE IDasistencia='id'";
-		this->ejecutarSentencia();
+		$this->sentencia="UPDATE FROM asistencia SET IDasistencia='$IDasistencia', fecha='$fecha', empleado='$empleado', hora='$hora' WHERE IDasistencia='id'";
+		$this->ejecutarSentencia();
 
 	}
 

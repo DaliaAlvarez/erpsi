@@ -8,7 +8,7 @@
 	<input type="submit" name="alta" value="Guardar Asistencia">
 </form>
 <?php 
-     require_once ("asistenca.php");
+     require_once ("asistencia.php");
      	$obj = new Asistencia();
      if (isset($_POST["alta"]))
      {  	# code...

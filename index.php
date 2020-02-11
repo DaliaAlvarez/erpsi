@@ -11,11 +11,12 @@ require_once("php/vistaAsistencia.php");
 require_once("php/vistaBalance.php");
 require_once("php/vistaCliente.php");
 require_once("php/vistaCompra.php");
-require_once("php/vistaDetalle.php");
+require_once("php/vistaDetalle_compra.php");
 require_once("php/vistaDevoluciones.php");
 require_once("php/vistaEmpleado.php");
 require_once("php/vistaEvaluacion.php");
 require_once("php/vistaJornada.php");
+
 
  ?>
 </body>

@@ -1,7 +1,7 @@
 <?php 
 
 require_once("conexion.php");
-class Detalle_compra Conexion{
+class Detalle_compra extends Conexion{
 
 	public function alta($IDdetallecompra,$IDmateriaprima,$IDcompra, $cantidad){
 		$this->sentencia ="INSERT INTO detalle_compra VALUES (null,'$IDdetallecompra','$IDmateriaprima','$IDcompra','$cantidad')";
@@ -15,12 +15,12 @@ class Detalle_compra Conexion{
 
 	public function consulta(){
 		$this->sentencia = "SELECT * FROM detalle_compra";
-		return $this->obetenerSentencia();
+		return $this->obtenerSentencia();
 	}
 
 	public function modificar($IDdetalle_compra,$IDmateriaprima,$IDcompra, $cantidad){
-		this->sentencia="UPDATE FROM detalle_compra SET IDdetalle_compra='IDdetalle_compra', IDmateriaprima='$IDmateriaprima', IDcompra='$IDcompra', cantidad='$cantidad' WHERE IDdetalle_compra='id'";
-		this->ejecutarSentencia();
+		$this->sentencia="UPDATE FROM detalle_compra SET IDdetalle_compra='IDdetalle_compra', IDmateriaprima='$IDmateriaprima', IDcompra='$IDcompra', cantidad='$cantidad' WHERE IDdetalle_compra='id'";
+		$this->ejecutarSentencia();
 
 	}
 
