@@ -1,23 +1,71 @@
+<div id="grafica">
+  <form action="" method="post">
+    <input type="hidden" value="producto" name="tabla"> 
+    <input type="hidden" value="cantidad" name="dato"> 
+    <input type="hidden" value="nombre" name="encabezado"> 
+    <input type="submit" name="grafica" value="Graficar">
+  </form>
+</div>
+
+<?php
+/* Producto, Compra, Devoluciones, Jornada, Mantenimiento, Materia Prima, Mobiliario, Reemplazo, Venta*/
+if(isset($_POST["grafica"])){
+  require_once("php/grafica.php");
+}
+
+?>
+
+
 <form action="" method="post">
 	<br>
 	<input type="text" name="registro" placeholder="Registro:">
 	<br>
+  <input type="text" name="IDusuario" placeholder="Usuario">
+  <br>
 	<input type="text" name="movimiento_act" placeholder="Movimiento_act:"> <br>
 	<br>
 	<input type="text" name="movimiento_tabla" placeholder="Movimiento_tabla:"> <br>
 	
 	<input type="submit" name="alta" value="Guardar Actividad">
+
 </form>
 <?php 
      require_once ("actividad.php");
      	$obj = new Actividad();
      if (isset($_POST["alta"]))
      {  	# code...
-     	$registro = $_POST["Registro"];
-     	$movimiento_act = $_POST["Movimiento_act"];
-     	$movimiento_tabla = $_POST["Movimiento_tabla"];
-     	$obj->alta($registro,$movimiento_act,$movimiento_tabla);
+     	$registro = $_POST["registro"];
+     	$movimiento_act = $_POST["movimiento_act"];
+     	$movimiento_tabla = $_POST["movimiento_tabla"];
+      $IDusuario = $_POST["IDusuario"];
+     	$obj->alta($registro,$IDusuario,$movimiento_act,$movimiento_tabla);
      	echo "<h2>Actividad registrada</h2>";
+     }
+
+     $obj = new Actividad();
+     if (isset($_POST["mod"]))
+     {    # code...
+      $registro = $_POST["Registro"];
+      $movimiento_act = $_POST["Movimiento_act"];
+      $movimiento_tabla = $_POST["Movimiento_tabla"];
+      $obj->modificar($registro,$movimiento_act,$movimiento_tabla);
+      $id = $_POST["id"];
+
+      /* tenemos id*/
+      echo "<h2>Usuario modificado</h2>";
+     }
+ 
+     if(isset($_POST["eliminar"])){
+          echo "<script>
+          var opcion = confirm('¿Deseas eliminar el Actividad?');
+          if(opcion===true){
+               window.location.href = 'home.php?el=".$_POST["id"]."';}</script>";
+          }
+          if(isset($_GET["el"])){
+          $obj->eliminar($_GET["el"]);
+          //echo"<h2>Usuario eliminado</h2>";//
+          echo"<script>alert('Actividad eliminada')</script>";
+          header("Location: home.php");
      }
  ?>
 
@@ -26,6 +74,8 @@
  		<th>Registro</th>
  		<th>Movimiento_act</th>
  		<th>Movimiento_tabla</th>
+    <th>Eliminar</th>
+    <th>Modificar</th>
  	</tr>
  	<?php 
  	  $res = $obj->consulta();
@@ -35,7 +85,25 @@
  	   	   echo "<td>".$fila["registro"]."</td>";
  	   	   echo "<td>".$fila["movimiento_act"]."</td>";
  	   	   echo "<td>".$fila["movimiento_tabla"]."</td>";
- 	   	   echo "<tr>";
- 	   }
- 	 ?>
+ 	   	    ?>
+             <td>
+               <form action="" method="post">
+                    <input type="hidden" value="<?php echo $fila['IDusuario'] ?>" name="id">
+                    <input type="submit" name="eliminar" value="Eliminar">
+                    
+               </form>
+             </td>
+
+             <td>
+               <form action="" method="post">
+                    <input type="hidden" value="<?php echo $fila['IDusuario'] ?>" name="id">
+                    <input type="submit" name="modificar" value="Modificar">
+                    
+               </form>
+             </td>
+
+             <?php
+             echo "<tr>";
+        }
+      ?>
  </table>

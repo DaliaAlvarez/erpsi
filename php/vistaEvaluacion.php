@@ -46,6 +46,41 @@
      	$obj->alta($pregunta1,$pregunta2,$pregunta3,$pregunta4,$pregunta5,$pregunta6,$pregunta7,$pregunta8,$pregunta9,$pregunta10);
      	echo "<h2>Evaluacion registrada</h2>";
      }
+
+
+     $obj = new Evaluacion();
+     if (isset($_POST["mod"]))
+     {    # code...
+      $tipo = $_POST["Tipo"];
+      $pregunta1 = $_POST["Pregunta1"];
+      $pregunta2 = $_POST["Pregunta2"];
+      $pregunta3 = $_POST["Pregunta3"];
+      $pregunta4 = $_POST["Pregunta4"];
+      $pregunta5 = $_POST["Pregunta5"];
+      $pregunta6 = $_POST["Pregunta6"];
+      $pregunta7 = $_POST["Pregunta7"];
+      $pregunta8 = $_POST["Pregunta8"];
+      $pregunta9 = $_POST["Pregunta9"];
+      $pregunta10 = $_POST["Pregunta10"];
+          
+      $obj->alta($pregunta1,$pregunta2,$pregunta3,$pregunta4,$pregunta5,$pregunta6,$pregunta7,$pregunta8,$pregunta9,$pregunta10);
+      echo "<h2>Evaluacion modificada</h2>";
+     }
+
+
+
+      if(isset($_POST["eliminar"])){
+          echo "<script>
+          var opcion = confirm('¿Deseas eliminar la Evaluacion?');
+          if(opcion===true){
+               window.location.href = 'home.php?el=".$_POST["id"]."';}</script>";
+          }
+          if(isset($_GET["el"])){
+          $obj->eliminar($_GET["el"]);
+          //echo"<h2>Usuario eliminado</h2>";//
+          echo"<script>alert('Evaluacion eliminada')</script>";
+          header("Location: home.php");
+     }
  ?>
 
  <table>
@@ -81,6 +116,16 @@
          echo "<td>".$fila["pregunta10"]."</td>";
               
  	   	   echo "<tr>";
- 	   }
- 	 ?>
+ 	   ?>
+             <td>
+               <form action="" method="post">
+                    <input type="hidden" value="<?php echo $fila['IDusuario'] ?>" name="id">
+                    <input type="submit" name="eliminar" value="Eliminar">
+                    
+               </form>
+             </td>
+             <?php
+             echo "<tr>";
+        }
+      ?>
  </table>

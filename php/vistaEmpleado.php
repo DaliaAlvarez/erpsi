@@ -47,6 +47,39 @@
      	$obj->alta($nombre,$appaterno,$apematerno,$correo,$rfc,$telefono,$sexo,$fechaingreso,$cargo,$salario,$estadocivil,$nss);
      	echo "<h2>Cliente registrada</h2>";
      }
+
+     $obj = new Empleado();
+     if (isset($_POST["mod"]))
+     {    # code...
+      $nombre = $_POST["Nombre"];
+      $appaterno = $_POST["Appaterno"];
+      $apematerno = $_POST["Apmaterno"];
+      $correo = $_POST["Correo"];
+      $rfc = $_POST["RFC"];
+      $telefono = $_POST["Telefono"];
+      $sexo = $_POST["Sexo"];
+      $fechaingreso = $_POST["Fechaingreso"];
+      $cargo = $_POST["Cargo"];
+      $salario = $_POST["Salario"];
+      $estadocivil = $_POST["Estadocivil"];
+      $nss = $_POST["NSS"];
+      $obj->alta($nombre,$appaterno,$apematerno,$correo,$rfc,$telefono,$sexo,$fechaingreso,$cargo,$salario,$estadocivil,$nss);
+      echo "<h2>Cliente modificado</h2>";
+     }
+
+
+      if(isset($_POST["eliminar"])){
+          echo "<script>
+          var opcion = confirm('¿Deseas eliminar el Empleado?');
+          if(opcion===true){
+               window.location.href = 'home.php?el=".$_POST["id"]."';}</script>";
+          }
+          if(isset($_GET["el"])){
+          $obj->eliminar($_GET["el"]);
+          //echo"<h2>Usuario eliminado</h2>";//
+          echo"<script>alert('Empleado eliminada')</script>";
+          header("Location: home.php");
+     }
  ?>
 
  <table>
@@ -75,6 +108,16 @@
  	   	   echo "<td>".$fila["sexo"]."</td>";
  	   	   echo "<td>".$fila["fenacimiento"]."</td>";
  	   	   echo "<tr>";
- 	   }
- 	 ?>
+ 	    ?>
+             <td>
+               <form action="" method="post">
+                    <input type="hidden" value="<?php echo $fila['IDusuario'] ?>" name="id">
+                    <input type="submit" name="eliminar" value="Eliminar">
+                    
+               </form>
+             </td>
+             <?php
+             echo "<tr>";
+        }
+      ?>
  </table>

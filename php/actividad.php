@@ -3,9 +3,9 @@
 require_once("conexion.php");
 class Actividad extends Conexion{
 
-	public function alta($IDactividad,$registro,$IDusuario, $movimiento_act, $movimiento_tabla){
-		$this->sentencia ="INSERT INTO actividad VALUES (null,'$IDactividad','$registro','$IDusuario','$movimiento_act', '$movimiento_tabla')";
-		$thihs->ejecutarSentencia();
+	public function alta($registro,$IDusuario, $movimiento_act, $movimiento_tabla){
+		$this->sentencia ="INSERT INTO actividad VALUES (null,'$registro','$IDusuario','$movimiento_act', '$movimiento_tabla')";
+		$this->ejecutarSentencia();
 	}
 
 	public function eliminar($id){
@@ -18,11 +18,16 @@ class Actividad extends Conexion{
 		return $this->obtenerSentencia();
 	}
 
-	public function modificar($IDactividad,$registro,$IDusuario, $movimiento_act, $movimiento_tabla){
+	public function modificar($registro,$IDusuario, $movimiento_act, $movimiento_tabla){
 		$this->sentencia="UPDATE FROM usuario SET $IDactividad='$IDactividad, 'registo='$registro', IDusuario='$IDusuario', movimiento_act='$movimiento_act', movimiento_tabla='$movimiento_tabla' WHERE IDactividad='id'";
 		$this->ejecutarSentencia();
 
 	}
+
+	public function buscar($id){
+            $this->sentencia = "SELECT * FROM actividad WHERE IDactividad=$id";
+            return $this->obtenerSentencia();
+        }
 
 }
 

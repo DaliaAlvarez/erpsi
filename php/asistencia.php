@@ -3,9 +3,9 @@
 require_once("conexion.php");
 class Asistencia extends Conexion{
 
-	public function alta($IDasistencia,$fecha,$IDempleado, $hora){
-		$this->sentencia ="INSERT INTO actividad VALUES (null,'$IDasistencia','$fecha','$IDempleado','$hora')";
-		$thihs->ejecutarSentencia();
+	public function alta($fecha,$IDempleado, $hora){
+		$this->sentencia ="INSERT INTO asistencia VALUES (null,'$fecha','$IDempleado','$hora')";
+		$this->ejecutarSentencia();
 	}
 
 	public function eliminar($id){
@@ -18,8 +18,8 @@ class Asistencia extends Conexion{
 		return $this->obtenerSentencia();
 	}
 
-	public function modificar($IDasistencia,$fecha,$IDempleado, $hora){
-		$this->sentencia="UPDATE FROM asistencia SET IDasistencia='$IDasistencia', fecha='$fecha', empleado='$empleado', hora='$hora' WHERE IDasistencia='id'";
+	public function modificar($fecha,$IDempleado, $hora){
+		$this->sentencia="UPDATE FROM asistencia SET fecha='$fecha', IDempleado='$IDempleado', hora='$hora' WHERE IDasistencia='id'";
 		$this->ejecutarSentencia();
 
 	}

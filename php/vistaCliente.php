@@ -33,7 +33,35 @@
      	$sexo = $_POST["Sexo"];
      	$fenacimiento = $_POST["Fenacimiento"];
      	$obj->alta($registro,$nombre,$direccion,$telefono,$correo,$apematerno,$apepaterno,$sexo,$fenacimiento);
-     	echo "<h2>Cliente registrada</h2>";
+     	echo "<h2>Cliente registrado</h2>";
+     }
+
+      $obj = new Cliente();
+     if (isset($_POST["mod"]))
+     {    # code...
+      $nombre = $_POST["Nombre"];
+      $direccion = $_POST["Direccion"];
+      $telefono = $_POST["Telefono"];
+      $correo = $_POST["Correo"];
+      $apematerno = $_POST["Apematerno"];
+      $apepaterno = $_POST["Apepaterno"];
+      $sexo = $_POST["Sexo"];
+      $fenacimiento = $_POST["Fenacimiento"];
+      $obj->alta($registro,$nombre,$direccion,$telefono,$correo,$apematerno,$apepaterno,$sexo,$fenacimiento);
+      echo "<h2>Cliente modificado</h2>";
+     }
+
+    if(isset($_POST["eliminar"])){
+          echo "<script>
+          var opcion = confirm('¿Deseas eliminar el Cliente?');
+          if(opcion===true){
+               window.location.href = 'home.php?el=".$_POST["id"]."';}</script>";
+          }
+          if(isset($_GET["el"])){
+          $obj->eliminar($_GET["el"]);
+          //echo"<h2>Usuario eliminado</h2>";//
+          echo"<script>alert('Cliente eliminada')</script>";
+          header("Location: home.php");
      }
  ?>
 
@@ -63,6 +91,16 @@
  	   	   echo "<td>".$fila["sexo"]."</td>";
  	   	   echo "<td>".$fila["fenacimiento"]."</td>";
  	   	   echo "<tr>";
- 	   }
- 	 ?>
+ 	   ?>
+             <td>
+               <form action="" method="post">
+                    <input type="hidden" value="<?php echo $fila['IDusuario'] ?>" name="id">
+                    <input type="submit" name="eliminar" value="Eliminar">
+                    
+               </form>
+             </td>
+             <?php
+             echo "<tr>";
+        }
+      ?>
  </table>
