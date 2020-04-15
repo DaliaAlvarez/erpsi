@@ -24,6 +24,11 @@ class Jornada extends Conexion{
 
 	}
 
+	public function buscar($id){
+            $this->sentencia = "SELECT * FROM jornada WHERE IDjornada=$id";
+            return $this->obtenerSentencia();
+        }
+
 }
 
  ?>

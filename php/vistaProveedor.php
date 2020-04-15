@@ -14,7 +14,6 @@ if(!isset($_POST["modificar"])){
 </form>
 <?php }else{ 
     $res = $obj->buscar($_POST["id"]);
-
     $fila = $res->fetch_assoc();
     ?>
 <form action="" method="post">
@@ -45,13 +44,10 @@ if(isset($_POST["mod"])){
     $direccion=$_POST["direccion"];
     $correo=$_POST["correo"];
     $rfc=$_POST["rfc"];
-
     $id = $_POST["id"];
-    
     $obj->modificar($nombre,$telefono,$direccion,$correo,$rfc,$id);
-    echo "<h2>Usuario modificado</h2>";
+    echo "<h2>Proveedor modificado</h2>";
 }
-
 if(isset($_POST["eliminar"])){
     echo "<script>
     var opcion = confirm('¿Deseas eliminar el Proveedor?');
@@ -61,7 +57,7 @@ if(isset($_POST["eliminar"])){
     </script>";
 }
 if(isset($_GET["el"])){
-    $obj->baja($_GET["el"]);
+    $obj->eliminar($_GET["el"]);
     echo "<script>
         alert('Proveedor eliminado');
         window.location.href = 'home.php?sec=prov';

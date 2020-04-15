@@ -27,10 +27,10 @@
 			$this-> ejecutarSentencia();
 		}
 
-		public function baja($IDproducto){
-			$this-> sentencia = "DELETE FROM producto WHERE IDproducto = $IDproducto";
-			$this-> ejecutarSentencia();
-		}
+		public function eliminar($id){
+		$this-> sentencia = "DELETE FROM producto WHERE IDproducto=$id";
+		$this->ejecutarSentencia();
+	}
 
 		public function consulta(){
 			$this-> sentencia = "SELECT * FROM producto";

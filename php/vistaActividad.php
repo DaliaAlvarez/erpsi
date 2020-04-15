@@ -12,24 +12,38 @@
 if(isset($_POST["grafica"])){
   require_once("php/grafica.php");
 }
-
 ?>
-
-
+<?php 
+  require_once("actividad.php");
+  $obj = new Actividad();
+  if (!isset($_POST["modificar"])) { 
+  ?>
 <form action="" method="post">
 	<br>
-	<input type="text" name="registro" placeholder="Registro:">
-	<br>
-  <input type="text" name="IDusuario" placeholder="Usuario">
-  <br>
-	<input type="text" name="movimiento_act" placeholder="Movimiento_act:"> <br>
-	<br>
-	<input type="text" name="movimiento_tabla" placeholder="Movimiento_tabla:"> <br>
-	
+	<input type="text" name="registro" placeholder="Registro:"><br>
+  <input type="text" name="IDusuario" placeholder="Usuario"><br>
+	<input type="text" name="movimiento_act" placeholder="Movimiento_act:"><br><br>
+	<input type="text" name="movimiento_tabla" placeholder="Movimiento_tabla:"><br>
 	<input type="submit" name="alta" value="Guardar Actividad">
 
 </form>
-<?php 
+
+<?php }else{ 
+  $res = $obj->buscar($_POST["id"]);
+  $fila = $res->fetch_assoc();
+  ?>
+  <form action="" method="post">
+   <input type="text" name="registro" placeholder="registro:" value="<?php echo $fila['registro']; ?>"><br>
+  <input type="text" name="movimiento_act" placeholder="movimiento_act" value="<?php echo $fila['movimiento_act']; ?>"><br><br>
+  <input type="text" name="movimiento_tabla" placeholder="movimiento_tabla" value="<?php echo $fila['movimiento_tabla']; ?>"> <br><br>
+  </select> <br>  
+     <br>
+  <input type="hidden" value='<?php echo $_POST["id"] ?>' name="id">
+  <input type="submit" name="mod" value="Modificar Actividad">
+</form>
+
+<?php
+} 
      require_once ("actividad.php");
      	$obj = new Actividad();
      if (isset($_POST["alta"]))
@@ -55,19 +69,22 @@ if(isset($_POST["grafica"])){
       echo "<h2>Usuario modificado</h2>";
      }
  
-     if(isset($_POST["eliminar"])){
-          echo "<script>
-          var opcion = confirm('¿Deseas eliminar el Actividad?');
-          if(opcion===true){
-               window.location.href = 'home.php?el=".$_POST["id"]."';}</script>";
-          }
-          if(isset($_GET["el"])){
-          $obj->eliminar($_GET["el"]);
-          //echo"<h2>Usuario eliminado</h2>";//
-          echo"<script>alert('Actividad eliminada')</script>";
-          header("Location: home.php");
-     }
- ?>
+  if(isset($_POST["eliminar"])){
+    echo "<script>
+    var opcion = confirm('¿Deseas eliminar la Actividad?');
+    if(opcion===true){
+        window.location.href = 'home.php?sec=actividad&el=".$_POST["id"]."';
+    }
+    </script>";
+}
+if(isset($_GET["el"])){
+    $obj->eliminar($_GET["el"]);
+    echo "<script>
+        alert('Actividad eliminado');
+        window.location.href = 'home.php?sec=actividad';
+    </script>";
+}
+?>
 
  <table>
  	<tr>

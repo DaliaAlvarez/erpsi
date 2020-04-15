@@ -1,4 +1,9 @@
-<form action="" method="post">
+<?php 
+require_once("evaluacion.php");
+$obj=new Evaluacion();
+if(!isset($_POST["modificar"])){ 
+ ?>
+ <form action="" method="post">
 	<br>
 	<input type="text" name="tipo" placeholder="Tipo:">
 	<br>
@@ -26,9 +31,28 @@
 		
 	<input type="submit" name="alta" value="Guardar Evaluacion">
 </form>
-<?php 
-     require_once ("evaluacion.php");
-     	$obj = new Evaluacion();
+<?php }else{ 
+    $res = $obj->buscar($_POST["id"]);
+    $fila = $res->fetch_assoc();
+    ?>
+<form action="" method="post">
+<input type="text" name="pregunta1" placeholder="pregunta1: " value='<?php echo $fila["pregunta1"] ?>'><br>
+<input type="text" name="pregunta1" placeholder="pregunta2: " value='<?php echo $fila["pregunta2"] ?>'><br>
+<input type="text" name="pregunta1" placeholder="pregunta3: " value='<?php echo $fila["pregunta3"] ?>'><br>
+<input type="text" name="pregunta1" placeholder="pregunta4: " value='<?php echo $fila["pregunta4"] ?>'><br>
+<input type="text" name="pregunta1" placeholder="pregunta5: " value='<?php echo $fila["pregunta5"] ?>'><br>
+<input type="text" name="pregunta1" placeholder="pregunta6: " value='<?php echo $fila["pregunta6"] ?>'><br>
+<input type="text" name="pregunta1" placeholder="pregunta7: " value='<?php echo $fila["pregunta7"] ?>'><br>
+<input type="text" name="pregunta1" placeholder="pregunta8: " value='<?php echo $fila["pregunta8"] ?>'><br>
+<input type="text" name="pregunta1" placeholder="pregunta9: " value='<?php echo $fila["pregunta9"] ?>'><br>
+<input type="text" name="pregunta1" placeholder="pregunta10: " value='<?php echo $fila["pregunta10"] ?>'><br>
+
+</select><br>
+<input type="hidden" value='<?php echo $_POST["id"] ?>' name="id">
+<input type="submit" name="mod" value="Modificar Evaluacion">
+</form>
+<?php
+}
      if (isset($_POST["alta"]))
      {  	# code...
      	$tipo = $_POST["Tipo"];
@@ -69,19 +93,22 @@
 
 
 
-      if(isset($_POST["eliminar"])){
-          echo "<script>
-          var opcion = confirm('¿Deseas eliminar la Evaluacion?');
-          if(opcion===true){
-               window.location.href = 'home.php?el=".$_POST["id"]."';}</script>";
-          }
-          if(isset($_GET["el"])){
-          $obj->eliminar($_GET["el"]);
-          //echo"<h2>Usuario eliminado</h2>";//
-          echo"<script>alert('Evaluacion eliminada')</script>";
-          header("Location: home.php");
-     }
- ?>
+   if(isset($_POST["eliminar"])){
+    echo "<script>
+    var opcion = confirm('¿Deseas eliminar el Evaluacion?');
+    if(opcion===true){
+        window.location.href = 'home.php?sec=evaluacion&el=".$_POST["id"]."';
+    }
+    </script>";
+}
+if(isset($_GET["el"])){
+    $obj->eliminar($_GET["el"]);
+    echo "<script>
+        alert('Evaluacion eliminado');
+        window.location.href = 'home.php?sec=evaluacion';
+    </script>";
+}
+?>
 
  <table>
  	<tr>
@@ -121,6 +148,14 @@
                <form action="" method="post">
                     <input type="hidden" value="<?php echo $fila['IDusuario'] ?>" name="id">
                     <input type="submit" name="eliminar" value="Eliminar">
+                    
+               </form>
+             </td>
+
+              <td>
+               <form action="" method="post">
+                    <input type="hidden" value="<?php echo $fila['IDusuario'] ?>" name="id">
+                    <input type="submit" name="modificar" value="Modificar">
                     
                </form>
              </td>

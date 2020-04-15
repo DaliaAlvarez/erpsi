@@ -3,26 +3,31 @@
 require_once("conexion.php");
 class Empleado extends Conexion{
 
-	public function alta($IDempleado,$nombre,$appaterno, $apmaterno, $correo, $rfc, $telefono, $sexo, $fechadeingreso, $cargo, $salario, $estadocivil, $nss){
-		$this->sentencia ="INSERT INTO empleado VALUES (null,'$IDempleado','$nombre','$appaterno','$apmaterno','$correo', '$rfc', '$telefono', '$sexo', '$fechadeingreso', '$cargo', '$salario', $'estadocivil', '$nss')";
-		$thihs->ejecutarSentencia();
+	public function alta($nombre,$appaterno, $apmaterno, $correo, $rfc, $telefono, $sexo, $fechadeingreso, $cargo, $salario, $estadocivil, $nss){
+		$this-> sentencia ="INSERT INTO empleado VALUES (null, $nombre','$appaterno','$apmaterno','$correo', '$rfc', '$telefono', '$sexo', '$fechadeingreso', '$cargo', '$salario', $'estadocivil', '$nss')";
+		$this->ejecutarSentencia();
 	}
 
 	public function eliminar($id){
-		$this->sentencia = "DELETE FROM empleado WHERE IDempleado=$id";
+		$this-> sentencia = "DELETE FROM empleado WHERE IDempleado=$id";
 		$this->ejecutarSentencia();
 	}
 
 	public function consulta(){
-		$this->sentencia = "SELECT * FROM empleado";
+		$this-> sentencia = "SELECT * FROM empleado";
 		return $this->obtenerSentencia();
 	}
 
-	public function modificar($IDempleado,$nombre,$appaterno, $apmaterno, $correo, $rfc, $telefono, $sexo, $fechadeingreso, $cargo, $salario, $estadocivil, $nss){
-		$this->sentencia="UPDATE FROM empleado SET IDempleado='$IDempleado' nombre='$nombre', appaterno='$appaterno', apmaterno='$apmaterno', correo='$correo', rfc='$rfc', telefono='$telefono', sexo='$sexo', fechadeingreso='$fechadeingreso', cargo='$cargo', salario='$salario', estadocivil='$estadocivil', nss='$nss' WHERE IDempleado='id'";
+	public function modificar($nombre,$appaterno, $apmaterno, $correo, $rfc, $telefono, $sexo, $fechadeingreso, $cargo, $salario, $estadocivil, $nss){
+		$this-> sentencia="UPDATE FROM empleado SET nombre='$nombre', appaterno='$appaterno', apmaterno='$apmaterno', correo='$correo', rfc='$rfc', telefono='$telefono', sexo='$sexo', fechadeingreso='$fechadeingreso', cargo='$cargo', salario='$salario', estadocivil='$estadocivil', nss='$nss' WHERE IDempleado='id'";
 		$this->ejecutarSentencia();
 
 	}
+
+	public function buscar($id){
+            $this-> sentencia = "SELECT * FROM empleado WHERE IDempleado=$id";
+            return $this->obtenerSentencia();
+        }
 
 }
 
